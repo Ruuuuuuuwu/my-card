@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>徐煜翔｜數位名片</title>
+    <style>
+      :root {
+        --bg: #f5f6f4;
+        --glow1: rgba(34, 197, 94, 0.10);
+        --glow2: rgba(16, 185, 129, 0.10);
+        --card: rgba(255, 255, 255, 0.74);
+        --border: rgba(15, 23, 42, 0.12);
+        --text: #0f172a;
+        --muted: rgba(15, 23, 42, 0.68);
+        --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 15% 10%, var(--glow1), transparent 60%),
+          radial-gradient(900px 700px at 85% 85%, var(--glow2), transparent 55%),
+          var(--bg);
+        transition: background 420ms ease;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC",
+          "Microsoft JhengHei", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        letter-spacing: 0.2px;
+      }
+
+      .page {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 48px 18px;
+      }
+
+      .card {
+        width: min(520px, 100%);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 34px 28px 28px;
+      }
+
+      .avatar {
+        width: 148px;
+        height: 148px;
+        border-radius: 999px;
+        margin: 0 auto 18px;
+        background:
+          radial-gradient(120px 120px at 30% 30%, rgba(15, 23, 42, 0.10), transparent 55%),
+          linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(16, 185, 129, 0.12));
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        display: grid;
+        place-items: center;
+        user-select: none;
+        overflow: hidden;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: contrast(1.02) saturate(1.02);
+      }
+
+      .avatar span {
+        font-size: 14px;
+        color: rgba(15, 23, 42, 0.55);
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px dashed rgba(15, 23, 42, 0.22);
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: 28px;
+        line-height: 1.2;
+        font-weight: 760;
+      }
+
+      .subtitle {
+        margin: 10px 0 22px;
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--text);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 650;
+        transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(15, 23, 42, 0.22);
+      }
+
+      .hint {
+        margin: 16px 0 0;
+        text-align: center;
+        font-size: 12px;
+        color: rgba(15, 23, 42, 0.52);
+      }
+
+      @media (min-width: 520px) {
+        .buttons {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page" id="bg">
+      <section class="card" aria-label="Personal card">
+        <div class="avatar" aria-label="Profile photo">
+          <img src="./avatar.png" alt="徐煜翔的大頭貼" />
+        </div>
+        <h1>徐煜翔</h1>
+        <p class="subtitle">我是熱愛<strong>吉他和日本 jpop</strong>的大學生</p>
+
+        <nav class="buttons" aria-label="Social links">
+          <a
+            class="btn"
+            href="https://www.youtube.com/watch?v=4fndeDfaWCg"
+            target="_blank"
+            rel="noreferrer noopener"
+            >Instagram</a
+          >
+          <a class="btn" href="https://youtu.be/dQw4w9WgXcQ?si=7p-Bk-qJxWiIX5vd" target="_blank" rel="noreferrer noopener"
+            >GitHub</a
+          >
+          <button class="btn" id="emailBtn" type="button">Email</button>
+        </nav>
+
+        <p class="hint">小驚喜：點擊空白背景會隨機切換綠色系背景</p>
+      </section>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const bg = document.getElementById("bg");
+      const emailBtn = document.getElementById("emailBtn");
+
+      const themes = {
+        green: {
+          glows: ["rgba(34, 197, 94, 0.10)", "rgba(16, 185, 129, 0.10)"],
+          bgs: ["#f5f6f4", "#f1f7f2", "#eef7f1", "#eaf7f4", "#eefbf3", "#f3fbf7", "#e9f4ea", "#eaf3f0", "#eff6f2", "#f0f7f4", "#f2fbf5"],
+        },
+        pink: {
+          glows: ["rgba(236, 72, 153, 0.12)", "rgba(244, 114, 182, 0.12)"],
+          bgs: ["#fde2e4"],
+        },
+      };
+
+      function applyTheme({ bgColor, glow1, glow2 }) {
+        root.style.setProperty("--bg", bgColor);
+        root.style.setProperty("--glow1", glow1);
+        root.style.setProperty("--glow2", glow2);
+      }
+
+      function pickDifferent(list, current) {
+        if (!Array.isArray(list) || list.length === 0) return current || "#f5f6f4";
+        if (list.length === 1) return list[0];
+        let next = current;
+        while (next === current) next = list[Math.floor(Math.random() * list.length)];
+        return next;
+      }
+
+      bg.addEventListener("click", (e) => {
+        const t = e.target;
+        if (t instanceof HTMLElement && (t.closest("a, button, .card") || t.closest(".btn"))) return;
+        const current = getComputedStyle(root).getPropertyValue("--bg").trim();
+        applyTheme({
+          bgColor: pickDifferent(themes.green.bgs, current),
+          glow1: themes.green.glows[0],
+          glow2: themes.green.glows[1],
+        });
+      });
+
+      emailBtn.addEventListener("click", () => {
+        applyTheme({
+          bgColor: themes.pink.bgs[0],
+          glow1: themes.pink.glows[0],
+          glow2: themes.pink.glows[1],
+        });
+      });
+    </script>
+  </body>
+</html>
